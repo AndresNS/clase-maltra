@@ -6,7 +6,7 @@ Git es un software de control de versiones. No es lo mismo que github, git es la
 
 Cuando modificamos un archivo en nuestro directorio (Working directory) estará disponible para ser movido al Staging Area, que corresponde a los archivos que están listos para ser incluídos en un commit. Una vez definidos los archivos con los cambios que queremos conservar, hacemos un commit para almacenarlos en nuestro repositorio local, es decir, este commit y por ende, ese estado de los archivos en este punto quedarán registrados en la línea de tiempo del repositorio.
 
-![git-architechture](./img/git-architecture.png)
+![git-architechture](./img/git-architecture.jpg)
 
 ### Configuración de Git
 
