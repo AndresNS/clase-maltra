@@ -58,17 +58,3 @@ Existen 2 etiquetas que no tienen valor semántico, que son la etiqueta `<div>` 
 La etiqueta `<div>` tiene un comportamiento de tipo `block`, que
 Inline vs Block (inline-block se comporta como elemento inline, pero recibe propiedades de un block padding, width, height, margin and padding only in x axis)
 Divs vs Span
-
-## CSS
-
-Box Model
-Relative Units
-
-- em: The fontsize of the current element. (The value depends on the font size of the element that's applied to)
-- rem: relative to font-size of the :root element (Ancestor of all elements, (html tag))
-- vw, vh
-  Flexbox
-
-### Proyecto Clase 1
-
-Copiar diseno https://playvalorant.com/ pero con contenido de otra cosa. O el mismo contenido
