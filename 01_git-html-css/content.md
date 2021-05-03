@@ -79,7 +79,7 @@ Por otra parte, la etiqueta `<span>` tiene un comportamiento de tipo `inline`, i
 
 Existe un tercer tipo de comportamiento llamado `inline-block`, que tiene un comportamiento en un punto medio entre ambas propiedades anteriores. Los elementos con esta propiedad se comportan como un elemento `inline` en el aspecto en que su ancho se adapta al ancho del contenido, pero las propiedades `width` y `height` si tienen efecto y las propiedades `padding`, `margin` y `border` sí empujarán a los elementos adyacentes.
 
-## Unidades relativas
+### Unidades relativas
 
 A diferencia de las unidades absolutas como los _pixeles_, existen unidades relativas, que calculan su valor en relación a la medida de otros elementos.
 
