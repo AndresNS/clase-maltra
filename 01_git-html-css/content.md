@@ -11,6 +11,7 @@ Cuando modificamos un archivo en nuestro directorio (Working directory) estará 
 ### Configuración de Git
 
 `git config --global user.name 'name'`
+
 `git config --global user.email 'name@email.com'`
 
 ### Trabajando con git
@@ -40,7 +41,7 @@ Subir los cambios (que han sido incluidos en un commit) al repositorio remoto (G
 
 SEO es un proceso de optimización que se realiza a los sitios web con el fin de mejorar el posicionamiento en los motores de búsqueda (Google, Bing, DuckDuckGo, etc..). Existen 2 tipos, **SEO pagado** y **SEO orgánico**, el pagado, consiste en pagarle a un motor de búsqueda para posicionar un sitio web en los primeros lugares de los resultados cuando se realizan busquedas determinadas. Por otra parte, el SEO orgánico, consiste en construir el sitio web utilizando distintos recursos que son identificados y premiados por los motores de búsqueda otorgando un buen posicionamiento. Algunos de los factores que influyen en el SEO orgánico son:
 
-- Uso correcto de las etiquetas HTML, como <header, `<nav>`, `<section>`, `<article>`, `<sidebar>`, `<footer>` y encabezados (`<h1>`, `<h2>`, `<h3>`, etc..)
+- Uso correcto de las etiquetas HTML, como `<header>`, `<nav>`, `<section>`, `<article>`, `<sidebar>`, `<footer>` y encabezados (`<h1>`, `<h2>`, `<h3>`, etc..)
 - Utilización de etiquetas meta en el head de la página, como palabras clave.
 - Relación entre el título de la página con el contenido de la página.
 - Utilización de textos en negrita en palabras clave.
@@ -82,8 +83,17 @@ Existe un tercer tipo de comportamiento llamado `inline-block`, que tiene un com
 
 A diferencia de las unidades absolutas como los _pixeles_, existen unidades relativas, que calculan su valor en relación a la medida de otros elementos.
 
+**em:** _em_'s son una unidad relativa que depende del tamaño de la fuente del elemento al cuál se esté aplicando, en donde 1 em equivale al tamaño de la fuente. Por ejemplo, si el `font-size` del elemento es 16px, el valor de 1em será 16px.
+**rem:** Al igual que los _em_'s son una unidad relativa, pero a diferencia de la anterior, los _rem_'s depende del tamaño de la fuente del elemento `:root`. El elemento `:root` es el elemento padre de todos los otros elementos, es equivalente a la etiqueta `<html>`.
+**vw:** Es una unidad relativa en función del viewport. El viewport en los navegadores es la sección en donde el sitio web es mostrado, excluyendo la interfaz de usuario, el menú, la barra de estado, etc. Cada unidad de _vw_ corresponde a 1% del ancho del viewport (**v**iewport **w**idth), por lo que si la ventaja es redimensionada, el elemento al que se aplique un tamaño en _vw_ se verá afectado.
+**vh:** Se comporta de la misma manera que _vw_, pero en lugar de depender del ancho del viewport, depende del alto (**v**iewport **h**eight).
+
+### Flexbox
+
+Flexbox facilita el posisionamiento de elementos y la construcción de layouts. Para poder usarlo se debe especificar en la propiedad `display`. Al aplicar `display: flex` a un elemento, este se convierte en un _flex container_ y sus hijos directos serán considerados _flex items_. Por defecto los _flex items_ se posicionan uno al lado del otro, de izquierda a derecha, todos en una fila. Para alterar la forma en que se posicionan los elementos dentro del contenedor, se le deben aplicar distintas propiedades dependiendo el resultado que se quiera obtener. [Acá](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) se puede encontrar una guía detallada acerca de cómo usar flexbox y sus propiedades.
+
 ## Recursos
 
-[Markdown](https://www.markdownguide.org/basic-syntax/)
-[Google Fonts](https://fonts.google.com/)
-[Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [Markdown](https://www.markdownguide.org/basic-syntax/)
+- [Google Fonts](https://fonts.google.com/)
+- [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
