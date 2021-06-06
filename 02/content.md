@@ -1,0 +1,21 @@
+Clase
+
+- install live server extension
+- format on save - prettier
+- revision tarea (20 min)
+  - Nav
+- revision de mi resolucion
+- Flexbox (Ejercicios de posicionamientos)
+  - flex-direction
+  - wrap
+  - flex flow (direction + wrap)
+  - justify content
+  - align items
+  - flex order
+- position
+  - static
+  - fixed
+  - absolute
+  - relative
+  - sticky
+- float + text

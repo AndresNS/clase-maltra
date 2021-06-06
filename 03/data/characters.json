@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "name": "Character 1",
+    "hp": 500,
+    "attackDamage": 25,
+    "defense": 50,
+    "critical": 0.3,
+    "attackSpeed": 1000,
+    "img": ""
+  },
+  {
+    "id": "2",
+    "name": "Character 2",
+    "hp": 500,
+    "attackDamage": 25,
+    "defense": 50,
+    "critical": 0.3,
+    "attackSpeed": 1000,
+    "img": ""
+  },
+  {
+    "id": "3",
+    "name": "Character 3",
+    "hp": 500,
+    "attackDamage": 25,
+    "defense": 50,
+    "critical": 0.3,
+    "attackSpeed": 1000,
+    "img": ""
+  },
+  {
+    "id": "4",
+    "name": "Character 4",
+    "hp": 500,
+    "attackDamage": 25,
+    "defense": 50,
+    "critical": 0.3,
+    "attackSpeed": 1000,
+    "img": ""
+  },
+  {
+    "id": "5",
+    "name": "Character 5",
+    "hp": 500,
+    "attackDamage": 25,
+    "defense": 50,
+    "critical": 0.3,
+    "attackSpeed": 1000,
+    "img": ""
+  }
+]

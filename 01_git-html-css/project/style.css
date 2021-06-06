@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "FF Mark W05";
+  src: url("https://lolstatic-a.akamaihd.net/awesomefonts/Fonts/ffmark/8a533745-7bc5-4dcd-8552-d9952208de6f.eot?#iefix");
+  src: url("https://lolstatic-a.akamaihd.net/awesomefonts/Fonts/ffmark/8a533745-7bc5-4dcd-8552-d9952208de6f.eot?#iefix")
+      format("eot"),
+    url("https://lolstatic-a.akamaihd.net/awesomefonts/Fonts/ffmark/ffbb4591-1a9c-443b-9b6e-6ceb6a3ca76b.woff2")
+      format("woff2"),
+    url("https://lolstatic-a.akamaihd.net/awesomefonts/Fonts/ffmark/e44c8656-a389-4ecb-838c-3c135565d6b3.woff")
+      format("woff"),
+    url("https://lolstatic-a.akamaihd.net/awesomefonts/Fonts/ffmark/fcdcba61-8d4e-41db-9c06-24a5238587f1.ttf")
+      format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"); */
+
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "FF Mark W05", sans-serif;
+}
+
+/* .header-container .play-now-btn {
+  background: red;
+} */
+
+header {
+  background-color: #000;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+.header-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav .logo {
+  margin-right: 2rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.07rem;
+  font-size: 0.7rem;
+  margin: 0 1.5rem;
+  padding: 2rem 0;
+  border: 3px solid #000;
+}
+
+.nav a:hover {
+  border-bottom-color: #ff4655;
+}
+
+.play-now-btn {
+  display: flex;
+  align-items: center;
+}
+
+.play-now-btn a {
+  background: #ff4655;
+  border-radius: 3px;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.07rem;
+  font-size: 0.7rem;
+}
+
+.hero {
+  background: url("img/hero-wallpaper.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero-description {
+  color: #fff;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+  letter-spacing: 0.07rem;
+}
+
+.hero-logo {
+  width: 35%;
+  margin: 3rem 0 5rem;
+}
+
+.hero-logo svg {
+  fill: #fff;
+  filter: drop-shadow(3px 3px 7px rgba(0, 0, 0, 0.7));
+}
+
+.play-free-btn a {
+  color: #fff;
+  background: #ff4655;
+  border-radius: 3px;
+  padding: 1.2rem 4.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.07rem;
+  font-size: 0.7rem;
+}
+
+.news {
+  background-color: lightseagreen;
+  height: 80vh;
+}
+.we-are {
+  background-color: lightskyblue;
+  height: 80vh;
+}
+.agents {
+  background-color: lightsalmon;
+  height: 80vh;
+}
+.maps {
+  background-color: lightgray;
+  height: 80vh;
+}
+footer {
+  background-color: #000;
+  height: 50vh;
+}
