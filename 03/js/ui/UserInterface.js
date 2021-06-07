@@ -1,6 +1,7 @@
 "use strict";
 
-function UI() {
+function UI(game) {
+  this.game = game;
   this.attackButton = document.querySelector(".action-btn.attack");
   this.healButton = document.querySelector(".action-btn.heal");
   this.switchButton = document.querySelector(".action-btn.switch");
