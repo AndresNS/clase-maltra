@@ -1,7 +1,9 @@
 "use strict";
 
-function UI(game) {
-  this.game = game;
+import Game from "../prototypes/Game.js";
+
+function UI() {
+  this.game = new Game();
   this.attackButton = document.querySelector(".action-btn.attack");
   this.healButton = document.querySelector(".action-btn.heal");
   this.switchButton = document.querySelector(".action-btn.switch");
@@ -13,7 +15,35 @@ function UI(game) {
   this.characterSelection2 = document.querySelector(
     ".character-selection-dropdown.character-2"
   );
-  this.characters = [];
+  this.coldownTimers = {
+    attack: 0,
+    heal: 0,
+    switch: 0,
+  };
+  this.playerCharacters = [];
+  this.enemyCharacters = [];
+  this.playerCurrentCharacter = {
+    name: document.querySelector(".player .character-info .character-name"),
+    hpBar: document.querySelector(
+      ".player .character-info .hp-bar .current-hp"
+    ),
+    hpLabelCurrent: document.querySelector(
+      ".player .character-info .hp-label .hp-label-current"
+    ),
+    hpLabelTotal: document.querySelector(
+      ".player .character-info .hp-label .hp-label-total"
+    ),
+  };
+  this.enemyCharacter = {
+    name: document.querySelector(".enemy .character-info .character-name"),
+    hpBar: document.querySelector(".enemy .character-info .hp-bar .current-hp"),
+    hpLabelCurrent: document.querySelector(
+      ".enemy .character-info .hp-label .hp-label-current"
+    ),
+    hpLabelTotal: document.querySelector(
+      ".enemy .character-info .hp-label .hp-label-total"
+    ),
+  };
 }
 
 UI.prototype = {
@@ -29,6 +59,36 @@ UI.prototype = {
       this.playButton.setAttribute("disabled", true);
       this.characterSelection1.setAttribute("disabled", true);
       this.characterSelection2.setAttribute("disabled", true);
+
+      // Player
+      this.game.addPlayerCharacter(
+        this.game.createCharacter(
+          this.playerCharacters.find(
+            (character) => character.id === this.characterSelection1.value
+          ),
+          "player"
+        )
+      );
+      this.game.addPlayerCharacter(
+        this.game.createCharacter(
+          this.playerCharacters.find(
+            (character) => character.id === this.characterSelection2.value
+          ),
+          "player"
+        )
+      );
+
+      this.game.selectPlayerCharacter(0);
+
+      this.updatePlayerCharacterUI();
+
+      // Enemy
+      this.game.setEnemyCharacter(
+        this.game.createCharacter(this.enemyCharacters[0], "enemy")
+      );
+
+      this.updateEnemyCharacterUI();
+      this.startGame(this);
     });
 
     this.exitButton.addEventListener("click", () => {
@@ -54,7 +114,7 @@ UI.prototype = {
 
         this.characterSelection2.appendChild(option);
 
-        const filteredCharacters = this.characters.filter(
+        const filteredCharacters = this.playerCharacters.filter(
           (character) => character.id !== event.target.value
         );
 
@@ -68,6 +128,42 @@ UI.prototype = {
         }
         this.characterSelection2.removeAttribute("disabled");
       }
+    });
+
+    this.switchButton.addEventListener("click", () => {
+      if (this.game.currentPlayerCharacterIndex === 0)
+        this.game.selectPlayerCharacter(1);
+      else this.game.selectPlayerCharacter(0);
+
+      this.updatePlayerCharacterUI();
+      this.switchButton.setAttribute("disabled", true);
+      this.setOnColdown(
+        this.switchButton,
+        this.game.currentPlayerCharacter.switchColdown,
+        "switch"
+      );
+    });
+
+    this.attackButton.addEventListener("click", () => {
+      this.game.attackEnemy();
+      this.updateEnemyCharacterUI();
+      this.attackButton.setAttribute("disabled", true);
+      this.setOnColdown(
+        this.attackButton,
+        this.game.currentPlayerCharacter.attackSpeed,
+        "attack"
+      );
+    });
+
+    this.healButton.addEventListener("click", () => {
+      this.game.currentPlayerCharacter.heal();
+      this.updatePlayerCharacterUI();
+      this.healButton.setAttribute("disabled", true);
+      this.setOnColdown(
+        this.healButton,
+        this.game.currentPlayerCharacter.healColdown,
+        "heal"
+      );
     });
 
     this.characterSelection2.setAttribute("disabled", true);
@@ -103,7 +199,22 @@ UI.prototype = {
             option.textContent = character.name;
 
             context.characterSelection1.appendChild(option);
-            context.characters.push(character);
+            context.playerCharacters.push(character);
+          }
+        });
+
+      fetch("./data/enemies.json")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          for (const character of data) {
+            const option = document.createElement("option");
+
+            option.setAttribute("value", character.id);
+            option.textContent = character.name;
+
+            context.enemyCharacters.push(character);
           }
         });
     } catch (error) {
@@ -115,6 +226,69 @@ UI.prototype = {
 
       context.characterSelection1.appendChild(option);
     }
+  },
+
+  updatePlayerCharacterUI: function () {
+    this.playerCurrentCharacter.name.textContent =
+      this.game.currentPlayerCharacter.name;
+    this.playerCurrentCharacter.hpLabelCurrent.textContent =
+      this.game.currentPlayerCharacter.currentHP;
+    this.playerCurrentCharacter.hpLabelTotal.textContent =
+      this.game.currentPlayerCharacter.maxHP;
+
+    const currentHPBarWidth = Math.ceil(
+      (this.game.currentPlayerCharacter.currentHP /
+        this.game.currentPlayerCharacter.maxHP) *
+        100
+    );
+
+    this.playerCurrentCharacter.hpBar.style.width = `${currentHPBarWidth}%`;
+  },
+
+  updateEnemyCharacterUI: function () {
+    this.enemyCharacter.name.textContent = this.game.enemy.name;
+    this.enemyCharacter.hpLabelCurrent.textContent = this.game.enemy.currentHP;
+    this.enemyCharacter.hpLabelTotal.textContent = this.game.enemy.maxHP;
+
+    const currentHPBarWidth = Math.ceil(
+      (this.game.enemy.currentHP / this.game.enemy.maxHP) * 100
+    );
+
+    this.enemyCharacter.hpBar.style.width = `${currentHPBarWidth}%`;
+  },
+
+  startGame: function (context) {
+    this.game.start();
+    this.game.enemy.timerID = setInterval(() => {
+      context.game.attackPlayer();
+
+      this.updatePlayerCharacterUI();
+    }, 3000 * (1 / context.game.enemy.attackSpeed));
+  },
+
+  setOnColdown: function (element, coldown, type) {
+    element.textContent = coldown;
+    this.coldownTimers[type] = setInterval(() => {
+      coldown -= 1;
+      element.textContent = coldown;
+      if (coldown <= 0) {
+        clearInterval(this.coldownTimers[type]);
+        switch (type) {
+          case "attack":
+            element.textContent = "Atacar";
+            element.removeAttribute("disabled");
+            break;
+          case "heal":
+            element.textContent = "Curar";
+            element.removeAttribute("disabled");
+            break;
+          case "switch":
+            element.textContent = "Cambiar";
+            element.removeAttribute("disabled");
+            break;
+        }
+      }
+    }, 1000);
   },
 };
 

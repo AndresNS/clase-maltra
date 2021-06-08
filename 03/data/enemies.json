@@ -2,11 +2,11 @@
   {
     "id": "1",
     "name": "Enemy 1",
-    "hp": 500,
-    "attackDamage": 25,
+    "hp": 1000,
+    "attackDamage": 50,
     "defense": 50,
-    "critical": 0.3,
-    "attackSpeed": 1000,
+    "critical": 0.1,
+    "attackSpeed": 1,
     "img": ""
   },
   {
@@ -16,7 +16,7 @@
     "attackDamage": 25,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 0.7,
     "img": ""
   },
   {
@@ -26,7 +26,7 @@
     "attackDamage": 25,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 0.7,
     "img": ""
   },
   {
@@ -36,7 +36,7 @@
     "attackDamage": 25,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 0.7,
     "img": ""
   },
   {
@@ -46,7 +46,7 @@
     "attackDamage": 25,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 0.7,
     "img": ""
   }
 ]

@@ -3,10 +3,13 @@
     "id": "1",
     "name": "Character 1",
     "hp": 500,
-    "attackDamage": 25,
+    "attackDamage": 125,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 3,
+    "healAmount": 50,
+    "healColdown": 3,
+    "switchColdown": 5,
     "img": ""
   },
   {
@@ -16,7 +19,10 @@
     "attackDamage": 25,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 2,
+    "healAmount": 50,
+    "healColdown": 3,
+    "switchColdown": 5,
     "img": ""
   },
   {
@@ -26,7 +32,8 @@
     "attackDamage": 25,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 3,
+    "healAmount": 50,
     "img": ""
   },
   {
@@ -36,7 +43,8 @@
     "attackDamage": 25,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 3,
+    "healAmount": 50,
     "img": ""
   },
   {
@@ -46,7 +54,8 @@
     "attackDamage": 25,
     "defense": 50,
     "critical": 0.3,
-    "attackSpeed": 1000,
+    "attackSpeed": 3,
+    "healAmount": 50,
     "img": ""
   }
 ]
