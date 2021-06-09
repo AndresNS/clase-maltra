@@ -15,6 +15,8 @@ function UI() {
   this.characterSelection2 = document.querySelector(
     ".character-selection-dropdown.character-2"
   );
+  this.startScreen = document.querySelector(".start-screen");
+  this.endScreen = document.querySelector(".end-screen");
   this.coldownTimers = {
     attack: 0,
     heal: 0,
@@ -33,6 +35,7 @@ function UI() {
     hpLabelTotal: document.querySelector(
       ".player .character-info .hp-label .hp-label-total"
     ),
+    sprite: document.querySelector(".player .character-sprite img"),
   };
   this.enemyCharacter = {
     name: document.querySelector(".enemy .character-info .character-name"),
@@ -43,6 +46,7 @@ function UI() {
     hpLabelTotal: document.querySelector(
       ".enemy .character-info .hp-label .hp-label-total"
     ),
+    sprite: document.querySelector(".enemy .character-sprite img"),
   };
 }
 
@@ -97,6 +101,8 @@ UI.prototype = {
       this.characterSelection1.value = 0;
       this.characterSelection2.value = 0;
       this.characterSelection1.removeAttribute("disabled");
+      this.setEndScreen("none");
+      this.setStartScreen("block");
     });
 
     this.characterSelection1.addEventListener("change", (event) => {
@@ -153,6 +159,8 @@ UI.prototype = {
         this.game.currentPlayerCharacter.attackSpeed,
         "attack"
       );
+
+      if (this.game.win || this.game.lose) this.setEndScreen("block");
     });
 
     this.healButton.addEventListener("click", () => {
@@ -169,6 +177,7 @@ UI.prototype = {
     this.characterSelection2.setAttribute("disabled", true);
     this.setControls(true);
     this.loadCharacters(this);
+    this.setStartScreen("block");
   },
 
   setControls: function (value) {
@@ -235,6 +244,8 @@ UI.prototype = {
       this.game.currentPlayerCharacter.currentHP;
     this.playerCurrentCharacter.hpLabelTotal.textContent =
       this.game.currentPlayerCharacter.maxHP;
+    this.playerCurrentCharacter.sprite.src =
+      this.game.currentPlayerCharacter.img;
 
     const currentHPBarWidth = Math.ceil(
       (this.game.currentPlayerCharacter.currentHP /
@@ -249,6 +260,7 @@ UI.prototype = {
     this.enemyCharacter.name.textContent = this.game.enemy.name;
     this.enemyCharacter.hpLabelCurrent.textContent = this.game.enemy.currentHP;
     this.enemyCharacter.hpLabelTotal.textContent = this.game.enemy.maxHP;
+    this.enemyCharacter.sprite.src = this.game.enemy.img;
 
     const currentHPBarWidth = Math.ceil(
       (this.game.enemy.currentHP / this.game.enemy.maxHP) * 100
@@ -258,11 +270,17 @@ UI.prototype = {
   },
 
   startGame: function (context) {
+    this.setStartScreen("none");
     this.game.start();
     this.game.enemy.timerID = setInterval(() => {
-      context.game.attackPlayer();
-
-      this.updatePlayerCharacterUI();
+      if (this.game.started) {
+        context.game.attackPlayer();
+        if (!this.game.win && !this.game.lose) this.updatePlayerCharacterUI();
+        if (this.game.win || this.game.lose) {
+          clearInterval(this.game.enemy.timerID);
+          this.setEndScreen("block");
+        }
+      }
     }, 3000 * (1 / context.game.enemy.attackSpeed));
   },
 
@@ -289,6 +307,15 @@ UI.prototype = {
         }
       }
     }, 1000);
+  },
+
+  setEndScreen: function (display) {
+    this.endScreen.style.display = display;
+    this.endScreen.textContent = this.game.win ? "You win!" : "Game Over";
+  },
+
+  setStartScreen: function (display) {
+    this.startScreen.style.display = display;
   },
 };
 

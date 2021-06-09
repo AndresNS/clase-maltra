@@ -18,6 +18,10 @@ Game.prototype = {
     this.started = true;
   },
 
+  end: function () {
+    this.started = false;
+  },
+
   exit: function () {
     this.started = false;
   },
@@ -69,7 +73,7 @@ Game.prototype = {
     this.selectPlayerCharacter(0);
     if (this.playerCharacters.length === 0) {
       this.lose = true;
-      console.log("Game Over");
+      this.end();
     }
   },
 
@@ -83,7 +87,7 @@ Game.prototype = {
     this.enemy.damage(damage, criticalAttack);
     if (!this.enemy.alive) {
       this.win = true;
-      console.log("You Win");
+      this.end();
     }
   },
 
